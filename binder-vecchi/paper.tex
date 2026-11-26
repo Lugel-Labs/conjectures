@@ -1,0 +1,179 @@
+\documentclass[a4paper,envcountsame,runningheads]{llncs}
+\pdfmapfile{+cm-super-t1.map}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[hidelinks,hypertexnames=false]{hyperref}
+\hypersetup{pdftitle={A remark on the real-rootedness of refined Hodge–Poincaré polynomials of matroids},pdfauthor={Luis Ángel Gonzalez},pdfsubject={Refined Hodge–Poincaré polynomials of matroids, Ring0 Labs, published by Lugel Labs},pdfkeywords={Matroids, Bergman fans, real-rootedness, Hodge–Poincaré polynomials}}
+\usepackage[capitalise,noabbrev]{cleveref}
+\pagestyle{plain}
+\setlength{\emergencystretch}{2em}
+\newcommand{\uH}{\underline{\mathsf H}}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\si}{\mathrm{si}}
+
+\title{A remark on the real-rootedness of refined Hodge--Poincar\'e polynomials of matroids}
+\titlerunning{Refined Hodge--Poincar\'e polynomials of matroids}
+\author{Luis \'Angel Gonzalez}
+\authorrunning{L.\,\'A. Gonzalez}
+\institute{Ring0 Labs\\\email{angel@r-0.org} \textperiodcentered{} AI Swarms\\Published by Lugel Labs}
+
+
+
+\begin{document}
+\raggedbottom
+\maketitle
+\thispagestyle{plain}
+\begin{abstract}
+Binder and Vecchi conjectured that, for every loopless matroid $M$ of rank $r$ on $[n]$ and every $0\le i\le n-r$, the refined Hodge--Poincar\'e polynomial $\uH^i_M(x)$ has only real zeros. We prove that for every homological degree $i\geq 0$ there is a loopless matroid for which the refined polynomial in degree $i$ has a non-real zero. For $i=0$ this follows at once from the recent counterexamples of B\'erczi, Coron, Eur and Li to the real-rootedness of Chow polynomials. For $i\ge 1$ we combine Binder's formula for parallel elements with continuity of zeros. We reformulate the condition on loopless matroids with a given simplification as a binomial-mixture test, prove real-rootedness for arbitrary nonnegative combinations of the positive-index columns of uniform matroids, and give exact low-rank computations, including three columns for $PG(3,2)$ and real-rootedness of every nonnegative parameter specialization for three rank-four matroids.
+\keywords{Matroids \and Bergman fans \and Hodge--Poincar\'e polynomials \and Real-rootedness}
+\end{abstract}
+
+\section{Introduction}
+
+The refined Hodge--Poincar\'e polynomials of a matroid record the graded dimensions of the singular cohomology of its Bergman toric variety. Binder and Vecchi proved real-rootedness for uniform matroids and conjectured it for every loopless matroid~\cite[Theorem~1.4 and Conjecture~1.5]{BV}. The counterexamples to ordinary Chow real-rootedness in~\cite[Theorem~C]{BCEL} settle the index-zero case. Adding parallel elements carries that obstruction to each fixed positive index.
+
+\subsection{Our contributions}
+\begin{enumerate}
+\item We prove that for every fixed index, sufficiently large parallel extensions of a Chow counterexample give refined counterexamples (\Cref{thm:main}).
+\item We derive a necessary condition on bivariate specializations for the real-rootedness of all parallel extensions and establish compatibility of the positive-index columns for uniform matroids (\Cref{prop:reform,prop:unif}).
+\item We verify exact low-rank examples, including three columns for $PG(3,2)$ (\Cref{sec:computations}).
+\end{enumerate}
+
+\subsection{Related work}
+Franz gives Koszul and orbit-complex models for the cohomology of smooth toric varieties~\cite{Franz,FranzOrbit}. Binder applies the Koszul model to matroids, proves vanishing bounds, and computes the effect of parallel elements~\cite[Proposition~3.6 and Theorem~6.6]{Binder}. Binder and Vecchi use a transform of Br\"and\'en and Solus to prove the uniform case~\cite{BS,BV}. The counterexamples of B\'erczi, Coron, Eur, and Li supply the simple rank-seven matroids used in our fixed-index argument~\cite[Theorem~C]{BCEL}.
+
+\section{Preliminaries}
+
+Let $M$ be a loopless matroid of rank $r$ on $[n]$, let $\underline\Sigma_M$ be its Bergman fan (rays $e_F$ for the proper nonempty flats $F$, cones given by chains of flats) in $N_\Q=\Q^n/\Q\mathbf 1$, and let $X_M$ be the associated smooth quasi-projective toric variety. By Franz's theorem~\cite{Franz},
+$H^\bullet(X_M)\cong \operatorname{Tor}^{\operatorname{Sym}N^\vee_\Q}_\bullet(\Q[\underline\Sigma_M],\Q)$, and $\operatorname{Gr}^W_{2j}H^{2j-i}(X_M)\cong \operatorname{Tor}_i(\Q[\underline\Sigma_M],\Q)_j$~\cite{Binder,BV}. Following~\cite{BV}, define
+\[
+\uH^i_M(x)=\sum_j \dim \operatorname{Tor}_i(\Q[\underline\Sigma_M],\Q)_j\, x^{j-i},\qquad 0\le i\le n-r,
+\]
+and the bivariate generating function $P_M(w,x)=\sum_i w^i\,\uH^i_M(x)$. In Binder's notation $\operatorname{HPoin}_M(w,x)=\sum_{i,j}\dim\operatorname{Tor}_i(\cdot)_j\,w^ix^j$, we have $P_M(w,x)=\operatorname{HPoin}_M(w/x,x)$. Thus $\uH^i_M$ is the $i$-th column of the graded Betti table of the face ring of the Bergman complex, viewed as a module over $\operatorname{Sym}N^\vee_\Q$.
+
+We use the following facts.
+\begin{enumerate}
+\item $\uH^0_M=\underline H_M$ is the Chow polynomial~\cite{BV}. It is palindromic of degree $r-1$ with leading coefficient $1$.
+\item $\deg \uH^i_M\le r-1$ for all $i$. This is Binder's vanishing theorem~\cite[Thm.~6.6]{Binder}: $\operatorname{Gr}^W_{j}H^k=0$ for $j<2k-2r+2$.
+\item (Parallel elements~\cite[Prop.~3.6]{Binder}.) If $\si(M)$ is the simplification and $p=n-|\si(M)|$, then $\operatorname{HPoin}_M=(1+wx)^p\operatorname{HPoin}_{\si(M)}$.
+\end{enumerate}
+
+\begin{lemma}\label{lem:par}
+With $p=n-|\si(M)|$, we have $P_M(w,x)=(1+w)^p\,P_{\si(M)}(w,x)$, that is,
+\[
+\uH^i_M(x)=\sum_{b\ge0}\binom pb\,\uH^{\,i-b}_{\si(M)}(x).
+\]
+\end{lemma}
+\begin{proof}
+Substitute $w\mapsto w/x$ in fact (3). Geometrically, $X_M\cong X_{\si(M)}\times(\mathbb C^*)^p$, and the torus contributes classes with weight equal to twice the degree, that is, with $i$ equal to the degree and $x$-exponent $0$.
+\end{proof}
+
+\section{Counterexamples in every homological degree}
+
+\begin{theorem}[B\'erczi--Coron--Eur--Li~\cite{BCEL}]\label{thm:bcel}
+There exist simple, $3$-connected matroids of rank $7$ whose Chow polynomial has non-real zeros. For example, for odd prime powers $q\ge 47$, a rank-$7$ truncation of $\mathcal M_q\oplus\mathcal M_q\oplus U_{1,1}$ has this property.
+\end{theorem}
+
+Since $\uH^0_M=\underline H_M$, this already disproves \cite[Conj.~1.5]{BV} at $i=0$. The same failure propagates to every $i$.
+
+\begin{theorem}\label{thm:main}
+For every $i\ge 0$ there is a loopless matroid $N$ with $\uH^i_N$ not real-rooted. More precisely, let $M$ be a simple matroid of rank $r$ whose Chow polynomial has a non-real zero, and let $M^{(p)}$ be obtained by adding $p$ new elements parallel to elements of $M$. Then for each fixed $i$ there is $p_0$ such that $\uH^i_{M^{(p)}}$ has a non-real zero for all $p\ge p_0$.
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{lem:par}, for $p\ge i$,
+\[
+\frac{\uH^i_{M^{(p)}}(x)}{\binom pi}=\underline H_M(x)+\sum_{a\ge1}\frac{\binom p{i-a}}{\binom pi}\,\uH^a_M(x).
+\]
+For $a\ge1$ the ratio $\binom p{i-a}/\binom pi$ tends to $0$ as $p\to\infty$. All polynomials involved have degree at most $r-1$, by fact (2). Hence the left side converges coefficientwise to $\underline H_M$, which has exact degree $r-1$. Choose a closed disk centered at a non-real zero of $\underline H_M$, disjoint from the real axis, with no zero on its boundary. Coefficientwise convergence of bounded-degree polynomials is uniform on this boundary. For all sufficiently large $p$, Rouch\'e's theorem gives the same positive number of zeros in the disk for the normalized polynomial and $\underline H_M$. Finally, $i\le |E(M^{(p)})|-r$ for $p\ge i$.
+\end{proof}
+
+\begin{remark}
+The proof only exploits the hypothesis ``loopless'', which allows parallel elements: these leave the lattice of flats unchanged but enlarge the ambient torus. For the Chow polynomial ($i=0$) only the lattice of flats matters, so ``loopless'' and ``simple'' are interchangeable there. For $i\ge1$ they are not.
+\end{remark}
+
+\section{Reformulation and the uniform case}
+
+\begin{proposition}\label{prop:reform}
+Let $M$ be simple with $c=n-r$. Then \cite[Conj.~1.5]{BV} holds for all loopless matroids with simplification $M$ if and only if, for every $p\ge0$ and $0\le i\le c+p$, the polynomial $\sum_b\binom pb\uH^{i-b}_M$ is real-rooted. In that case the bivariate polynomial
+\[
+P_M(t,x)=\sum_{i=0}^{c} t^i\,\uH^i_M(x)
+\]
+is real-rooted in $x$ for every $t\ge 0$.
+\end{proposition}
+\begin{proof}
+The equivalence is Lemma~\ref{lem:par}. For the consequence, fix $t>0$, put $\theta=t/(1+t)$ and $i=\lfloor\theta p\rfloor$. Then $\binom p{i-a}/\binom pi\to t^a$, so the normalized mixtures converge coefficientwise to $P_M(t,x)$. This limit is nonzero, since its constant term is $1$. A coefficientwise limit of real-rooted polynomials of bounded degree is real-rooted.
+\end{proof}
+
+Compatibility, meaning real-rootedness of every nonzero nonnegative linear combination of the columns, is sufficient for the binomial-mixture condition.
+
+\begin{proposition}\label{prop:unif}
+For all $1\le r\le n$ and all $w_1,\dots,w_{n-r}\ge0$, every nonzero polynomial $\sum_{i\ge1}w_i\,\uH^i_{U_{r,n}}$ is real-rooted. Consequently, for every $p$ and every $i>p$, $\uH^i_{U_{r,n}^{(p)}}$ is real-rooted.
+\end{proposition}
+\begin{proof}
+In the proof of \cite[Thm.~1.4]{BV}, $\uH^i_{U_{r,n}}=(\mathcal I_{r-1}\circ\mathcal D)(f_i)$ for $i\ge 1$. Here $\mathcal D(x^m)=d_m(x)$ is the deranged map, $\mathcal I_{r-1}g=x^{r-1}g(1/x)$, and each $f_i$ has nonnegative coefficients in the basis $\{x^{r-1-k}(1+x)^k\}$. Both maps are linear, and nonnegativity in that basis is preserved under nonnegative combinations. Hence $\sum_i w_i\uH^i_{U_{r,n}}=(\mathcal I_{r-1}\circ\mathcal D)(\sum_i w_if_i)$, which is real-rooted by \cite[Thm.~7.2]{BV} (Br\"and\'en--Solus~\cite{BS}), because $\mathcal I_{r-1}$ preserves real-rootedness. For $i>p$ the column $\uH^0$ does not enter Lemma~\ref{lem:par}.
+\end{proof}
+
+For $i\le p$ the Chow column also enters. We checked exactly (Sturm sequences over $\Q$) that all $\uH^i_{U^{(p)}_{r,n}}$ with $3\le r\le 7$, $n\le r+8$ and $p\le 40$ are real-rooted (41{,}820 polynomials). We also scanned $P_{U_{r,n}}(t,x)$ numerically for $r\le 8$, $n\le r+13$ and $t\in[10^{-6},10^{6}]$, without finding any failure.
+
+\section{Computations}\label{sec:computations}
+
+We computed $\uH^i_M$ from first principles in two independent ways.
+\begin{enumerate}
+\item \emph{Koszul engine.} Using Franz's isomorphism, we take a generic l.s.o.p.\ inside $N^\vee$, reduce the face ring to an Artinian algebra $B$, and compute the Koszul homology of the remaining $n-r$ forms on $B$, with exact arithmetic modulo $2^{31}-1$.
+\item \emph{Orbit (cellular) model.} Stratify $X_M$ by torus orbits and apply Poincar\'e duality. For $a=n-1-e-i$ one obtains
+\[
+[x^e]\,\uH^i_M=\dim H_e\big(C^{(a)}_\bullet\big),\qquad C^{(a)}_k=\bigoplus_{\dim\sigma=k}\Lambda^a(\sigma^\perp),
+\]
+with inclusions as differentials. For $\sigma=\{F_1<\dots<F_k\}$ one has $\sigma^\perp=\bigoplus_{j}\Q_0^{F_j\setminus F_{j-1}}$ (zero-sum vectors on the blocks, with $F_0=\emptyset$ and $F_{k+1}=[n]$). We do not claim novelty for this standard technique.
+\end{enumerate}
+The two engines agree on every example tested: uniform, $M(K_4)$, Fano, non-Fano, and non-simple matroids. They reproduce the closed formula of \cite[Lemma~6.2]{BV} for uniform matroids, the Euler characteristic $\sum_i(-t)^i\uH^i_M(t)=h_\Delta(t)(1-t)^{n-r}$, the top coefficient $[x^{r-1}]\uH^{n-r}_M=\mu(M)$~\cite{Binder}, and Lemma~\ref{lem:par}. We also checked the identity
+\[
+\textstyle\sum_i(-t)^i\,\uH^i_M(t)=\sum_{J}(-t)^{|J|}\prod_{b}A_{|b|}(t),
+\]
+where $J$ runs over chains of proper nonempty \emph{non-flats}, $b$ over the blocks of $J$, and $A_m$ is the Eulerian polynomial. It reflects the fact that $X_M$ is the permutohedral variety with the boundary divisors of the non-flats removed.
+
+\begin{table}[t]
+\caption{Selected refined Hodge--Poincar\'e polynomials. Coefficients within each column are in increasing degree.}
+\label{tab:examples}
+\centering\small
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.72\textwidth}@{}}\toprule
+$M$ & $(\uH^0_M,\uH^1_M,\dots)$, coefficient lists in increasing degree\\ \midrule
+$U_{4,6}$ & $(1,36,36,1),\ (0,40,115,14),\ (0,20,65,10)$\\
+$M(K_4)$ & $(1,8,1),\ (0,25,5),\ (0,19,10),\ (0,3,6)$\\
+Fano & $(1,8,1),\ (0,35,6),\ (0,42,15),\ (0,14,20),\ (0,0,8)$\\
+$AG(3,2)$ & $(1,43,43,1)$, $(0,126,224,7)$, $(0,126,372,21)$,\newline
+            $(0,42,244,41)$, $(0,0,56,21)$\\
+$PG(3,2)$ & $\uH^{11}=64x^3$, $\uH^{10}=245x^2+516x^3$, $\uH^9=35x+2380x^2+1759x^3$\\ \bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\emph{Evidence in low rank.} For 23 matroids of rank $3$ and $4$ we found every computed column real-rooted and observed no non-real roots at the sampled values of $t$ in $[10^{-4},10^{8}]$. All parallel extensions with $p\le 60$ are real-rooted as well. The list consists of uniform matroids, $M(K_4)$, $M(K_5)$, $M(W_4)$, Fano, non-Fano, $AG(3,2)$, $F_7\oplus U_{1,1}$, random sparse paving matroids on $8$ and $9$ elements, and random binary and ternary matroids on $8$--$10$ elements.
+
+For $PG(3,2)$ the top column is pure. As $t\to\infty$ the roots of $P(t,x)$ are governed by the Newton-polygon edge polynomial $y(64y^2+245y+35)$, whose discriminant is positive. Real-rootedness would fail there if $[x^1]\uH^{9}$ exceeded $245^2/256\approx234.5$. The randomized modular computation gave $35$. An exact cellular calculation over $\Q$ gives the same value: the relevant chain space at exterior degree $4$ has dimension $46{,}475$ and the adjacent boundary ranks are $1{,}001$ and $45{,}439$. The full columns in \Cref{tab:examples} were confirmed with the same rational method. In particular, the discriminant of $\uH^9/x$ is $5{,}418{,}140$.
+
+For $AG(3,2)$, $M(W_4)$, and $M(K_5)$ we recomputed every column over $\Q$ and formed $\operatorname{disc}_x P_M(t,x)$ symbolically. The discriminants have degrees $14$, $16$, and $22$ in $t$ respectively. All coefficients, including the constant coefficients, are strictly positive in each case. Since the coefficient of $x^3$ remains positive for $t\ge0$, the cubic $P_M(t,x)$ has three distinct real zeros for every $t\ge0$ in each of the three cases.
+
+\section{Questions}
+
+\begin{question}
+Is $\uH^i_M$ real-rooted for every \emph{simple} matroid $M$ and every $i\ge1$?
+\end{question}
+
+\begin{question}
+Is \cite[Conj.~1.5]{BV} true for loopless matroids of rank at most $6$, a range in which Chow polynomials are real-rooted (as reported in~\cite{BCEL})? Are the columns of each simple matroid of rank at most $6$ compatible? Compatibility would suffice by \Cref{prop:reform}.
+\end{question}
+
+\begin{question}
+Do the conclusions of Proposition~\ref{prop:unif} and of Question~2 hold for paving or sparse paving matroids?
+\end{question}
+
+
+
+\section{Conclusion}
+
+Parallel elements propagate the known Chow counterexamples to each fixed refined index. For uniform matroids, arbitrary nonnegative combinations of positive-index columns have real zeros whenever the combination is nonzero. The small-rank calculations establish specific cases of real-rootedness and leave the general positive-index question for simple matroids open here.
+
+\bibliographystyle{splncs04}
+\bibliography{references}
+\end{document}

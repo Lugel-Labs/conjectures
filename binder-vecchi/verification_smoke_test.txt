@@ -1,0 +1,27 @@
+Release smoke test: Python 3.13.5, NumPy 2.3.5, SymPy 1.14.0.
+Command: python -u verify_results.py binder_vecchi_verificacion.zip
+Time-limited to 10 seconds; PG(3,2) stage not completed.
+
+AG(3,2) coefficients of x by row i:
+0 [1, 43, 43, 1]
+1 [0, 126, 224, 7]
+2 [0, 126, 372, 21]
+3 [0, 42, 244, 41]
+4 [0, 0, 56, 21]
+Discriminant degree and smallest coefficient: 14 2816000
+M(W4) coefficients of x by row i:
+0 [1, 34, 34, 1]
+1 [0, 105, 168, 7]
+2 [0, 105, 293, 21]
+3 [0, 43, 205, 29]
+4 [0, 6, 48, 14]
+Discriminant degree and smallest coefficient: 16 70848
+M(K5) coefficients of x by row i:
+0 [1, 41, 41, 1]
+1 [0, 200, 295, 9]
+2 [0, 355, 865, 36]
+3 [0, 305, 1272, 85]
+4 [0, 135, 969, 120]
+5 [0, 25, 361, 86]
+6 [0, 0, 50, 24]
+Discriminant degree and smallest coefficient: 22 1562500

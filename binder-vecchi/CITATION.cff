@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "A remark on the real-rootedness of refined Hodge–Poincaré polynomials of matroids"
+authors:
+  - family-names: "Gonzalez"
+    given-names: "Luis Ángel"
+    affiliation: "Ring0 Labs"
+license: MIT
+date-released: 2026-11-26
+url: "https://lugel.org/blog/math-conjectures/binder-vecchi"
+repository-code: "https://github.com/Lugel-Labs/conjectures/tree/binder-vecchi"
+keywords: [matroids, Bergman fans, Hodge–Poincaré polynomials, real-rootedness]

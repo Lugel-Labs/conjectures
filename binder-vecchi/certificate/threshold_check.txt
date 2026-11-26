@@ -1,0 +1,4 @@
+43 real roots 6 /6 log-concave
+47 real roots 2 /6 log-concave
+89 real roots 2 /6 log-concave
+97 real roots 2 /6 not log-concave
